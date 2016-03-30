@@ -1,0 +1,59 @@
+<html><head><title></title>
+<script language="javascript">
+<!--
+compat = false;
+if( parseInt( navigator.appVersion ) >= 3 ) { compat = true; }
+if( compat )
+{
+XX = new Image; XX.src = "viewport_nav_none.jpg";
+NN = new Image; NN.src = "viewport_nav_nn.jpg";
+NW = new Image; NW.src = "viewport_nav_nw.jpg";
+WW = new Image; WW.src = "viewport_nav_ww.jpg";
+SW = new Image; SW.src = "viewport_nav_sw.jpg";
+SS = new Image; SS.src = "viewport_nav_ss.jpg";
+SE = new Image; SE.src = "viewport_nav_se.jpg";
+EE = new Image; EE.src = "viewport_nav_ee.jpg";
+NE = new Image; NE.src = "viewport_nav_ne.jpg";
+}
+function setimage(imagename, image) {
+if (compat) document.images[imagename].src = eval(image + ".src");
+}
+
+vPos=16;
+hPos=16;
+xPos=0;
+yPos=0;
+xAmt=16;
+yAmt=16;
+
+function ResetScrollPage(xPos, yPos) {
+  window.frames[0].scroll(xPos,yPos);
+  vPos=yPos;
+  hPos=xPos;
+}
+
+function ScrollPage(xAdd, yAdd) {
+  vPos+=yAdd;
+  hPos+=xAdd;
+  window.frames[0].scroll(hPos,vPos);
+}
+
+//-->
+</script>
+<MAP NAME="navigator_map">
+<AREA SHAPE=POLY COORDS="3,64,41,42,56,48,79,64,46,86,25,93" OnClick="ScrollPage(-16,0)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','WW')">
+<AREA SHAPE=POLY COORDS="146,15,142,24,141,45,177,45,192,40,181,15" OnClick="ScrollPage(16,-16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','NE')">
+<AREA SHAPE=POLY COORDS="211,92,231,66,193,42,177,47,149,61,188,85" OnClick="ScrollPage(16,0)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','EE')">
+<AREA SHAPE=POLY COORDS="9,146,70,147,86,129,88,85,50,86,24,96" OnClick="ScrollPage(-16,16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','SW')">
+<AREA SHAPE=POLY COORDS="115,199,166,146,151,127,123,103,87,130,73,148" OnClick="ScrollPage(0,16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','SS')">
+<AREA SHAPE=POLY COORDS="224,148,210,94,189,88,145,87,154,127,169,147" OnClick="ScrollPage(16,16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','SE')">
+<AREA SHAPE=POLY COORDS="87,15,117,0,143,14,139,24,117,40,94,24" OnClick="ScrollPage(0,-16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','NN')">
+<AREA SHAPE=POLY COORDS="53,15,85,15,94,25,92,46,58,46,44,40" OnClick="ScrollPage(-16,-16)" OnMouseOut="setimage('navigator','XX')" OnMouseOver="setimage('navigator','NW')">
+</MAP>
+
+</head>
+<body bgcolor="#000000" text="#ffffff">
+<center><table width=500 border=0 cellpadding=0 cellspacing=8><tr><td align=center valign=top><img src="viewport_border_top.jpg" alt="" border=0><br><img src="viewport_border_left.jpg" alt="" border=0><iframe width=199 height=199 noscroll scrolling=no name="screen" src="viewport_map_screen.html" border=0 frameborder=0></iframe><img src="viewport_border_right.jpg" alt="" border=0><br><img src="viewport_border_bottom.jpg" alt="" border=0></td><td align=center valign=center><img usemap="#navigator_map" src="viewport_nav_none.jpg" alt="" border=0 name="navigator"></td></tr></table></center>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<html><head><title></title></head>
+<body bgcolor="black" text="black">
+
+<table cols=2 border=0 width=100% cellpadding=0 cellspacing=0>
+<tr><td width=200>&nbsp;</td><td width=*>&nbsp;</td></tr>
+<tr><td width=* colspan=2 align=left valign=top bgcolor="#000000">
+<img src="images/title_left.gif" border=0 alt=""><img src="images/title_middle.gif" border=0 alt=""><img src="images/title_right.gif" border=0 alt=""></td></tr>
+<tr><td width=200><img src="images/title_line2_left.gif" border=0 alt=""></td><td width=* bgcolor="#FFFFFF">&nbsp;</td></tr>
+<tr><td width=200 align=center valign=center><a href="../index.html"><img src="images/go_back.gif" border=0 alt="home"></a></td><td align=left valign=top bgcolor="#ffffff"><ul>
+
+<font size="4" face="Arial"><b>Classic IF Engines</b></font> | <a href="scalable.html">Scalable IF Engines</a>
+<p>
+
+Multi-user text adventures offers a challenge that no other type of adventure game can compete with. At least, they are supposed to.
+With so many Multi-User Domains (MUD's) avaliable on-line now, it's hard to get to like a particular style of engine. If you join
+a MUD, it's likely you'll walk down the street, unable to interact with computer-generated characters, stuck with the reasonble
+quality descriptions of each location, trying to examine everything only to find "You see nothing of interest here."<p>
+How does the computer know what interests you? It, of course, doesn't. Those descriptions you read from every location are words
+created by the programmer, you see what he sees. You're taking part in Interactive Fiction (IF), so you can only read, you can't change.<p>
+Interactive, huh?<p>
+Say you walk along a path through the park. You see a white bench, and decide to sit down. A Beastly Fido is here. You want to take a closer
+look at this Beastly Fido, maybe to see why it's so beastly. You find it's just like the other fifteen Beastly Fido's roaming the city. Ok.
+So now you want to paint the park bench. Unless the programmer has specifically coded that you can paint (or recolour) that object, you
+won't be able to. Commom sense tells you that park benches can be repainted, just as it tells you that not all dogs are identical. Soon
+you lose interest in the world around you, and move on to another adventure.<p>
+Wouldn't it be nice if you could change things as you go, to add moss and flowers growing in the cracks in the pavement around the bridge?
+To add a description to one particular dog, so you can spot it later on - maybe a scar, or a black spot, or a missing leg? Can you do this?
+Sure, but you have to rewrite the adventure, which means temporarily saving the world, everyone in it, recompiling it, and restarting it.
+Maybe an hours work, just to add some flowers and a missing leg. But wait, now all the Beastly Fido's have missing legs. Back to the drawing board.<P>
+
+<p>&nbsp;</p>
+
+You have a friend who likes 3D games like 'Half-Life', and another who likes point-and-click games like 'Riven', but you still enjoy pulling
+out 'Zork Zero' on the weekends. You're thinking it'd be nice if you could have a text interface to Riven, because you're used to examining
+objects, rather than clicking on everything until something works. And you'd like to have a text interface at the bottom of the Half-Life screen, so
+you could talk to people, because they talk to you.
+<p>You can't even begin to approach this using today's IF MUD environments - these engines don't actually know
+the difference between a white Park Bench and a Beastly Fido - they're merely objects at a location, one memory pointer pointing to another. If
+you hacked the code and changed the words 'Beastly Fido' with 'Park Bench', you would be able to sit on dogs and would see long white seats
+wandering the streets (may be handy for surreal adventures :-). The game engine doesn't know the difference- they're just words.
+
+<p>&nbsp;</p>
+
+Classic Text Adventure systems aren't that intelligent. In fact, they contain no intelligent functions whatsoever
+(although they seem very clever). Take this function (from the HUGO IF scripting language):
+<font color="#0000FF"><pre>
+routine DoEnter
+{
+	if not object
+	{
+		VMessage(&DoEnter, 1)    ! "Be a little more specific..."
+		return false
+	}
+
+	! To prevent endless loops if the player_character class
+	! automatically resets the object to in_obj if word[1] = "in"
+	word[1] = ""
+
+	if &object.door_to
+		return Perform(&DoGo, object)   ! routine
+	elseif object.door_to
+		return Perform(&DoGo, object)   ! object
+
+	if object is not enterable or Contains(player, object)
+		VMessage(&DoEnter, 2)    ! "You can't enter that."
+	elseif player in object
+		VMessage(&DoEnter, 3)    ! already in it
+	elseif player not in location
+		VMessage(&DoGo, 3)       ! "You'll have to get up..."
+	elseif object is openable, not open
+		VMessage(&DoLookIn, 1)   ! "X is closed."
+	else
+	{
+		move player to object
+		if not object.after
+			VMessage(&DoEnter, 4)    ! "You get in..."
+		object is not quiet
+		return true
+	}
+	return
+}
+</pre></font><br>
+Even if you're not that familiar with this (or other) languages, you can see that the engine in this case is
+a basic if...then system. If a player types "get in the box", the engine will work out if the box is enterable,
+and act accordingly. It has no understanding of what a box actually is. The code for entering a box, and entering
+an adjacent room is, in fact, the same.<p>
+Another example (again, from HUGO, but most languages act the same) shows how a "look" function is handled:
+<font color="#0000FF"><pre>
+verb "look", "l"
+	*                                                       DoLookAround
+	* "in"/"inside" container                               DoLookIn
+	* "on" platform                                         DoLookIn
+	* "at" object                                           DoLook
+	* "out"/"through" object                                DoLookThrough
+	* "under"/"underneath"/"beneath" object                 DoLookUnder
+	* "beside"/"behind"/"around" object                     DoLookUnder
+	* object                                                DoLook
+</pre></font><br>
+When a player types "look on box", the parser tells the engine to return a result which is in fact the same as saying
+"look in box" - the DoLookIn function handles both. If the box contains an inscrition on the top, and an item inside the box,
+it's possible that the engine may return an error. There's no room for completely seperate handlers for each type of "look" action.
+Also, in an engine such as this, objects cannot be modified in real time. A box that was locked and empty at design time in
+a classic text adventure, may have something placed inside it at a later time (as in the 'trophy case' in the Zork series),
+but unless very specifically coded, cannot be itself used to block something (ie, you can't block the chimney with the Zork
+trophy case, although you should be able to). People need to be able to interact with the text world as they would with the real world,
+otherwise they feel like they're interacting with a text world.
+
+<p>&nbsp;<p>
+<a href="home.html">Home</a> | <a href="classic.html">Classic IF Engines</a> | <a href="scalable.html">Scalable IF Engines</a><br>
+<a href="basics.html">Basics</a> | <a href="specs.html">Specifics</a> | <a href="flowcharts.html">Program Flowcharts</a><br>
+<a href="objects.html">Objects</a> | <a href="classes.html">Classes</a> | <a href="actions.html">Actions</a> | <a href="players.html">Players</a> | <a href="functions.html">Functions</a><br>
+<a href="feedback.html">Feedback</a> | <a href="code.html">Code Examples</a><br>
+</ul></td></tr>
+<tr><td align=center><font color="#FFFFFF" face="arial">design and content<br>(c) tim st.clair 1999</td><td>&nbsp;</td></tr>
+</table>
+</body></html>

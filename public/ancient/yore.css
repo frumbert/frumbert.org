@@ -1,0 +1,49 @@
+body {
+	background-color: #ccc;
+	color: #000;
+	font-family: serif;
+	font-size: 13pt;
+	line-height: 1.5;
+	margin: 8px;
+	max-width: 500px;
+}
+
+a {
+	color: #00f;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #909;
+}
+
+a:active, a:hover {
+	color: #f90;
+}
+
+h1 {
+	font-size: 24pt;
+}
+h2 {
+	font-size: 21pt;
+}
+h3 {
+	font-size: 18pt;
+}
+
+p {
+	margin: .5em 0;
+}
+
+header h1 {
+	border-bottom: 1px solid #999;
+}
+
+ul {
+	list-style-position: inside
+}
+
+ul li {
+	list-style-type: disc;
+	padding-left: 1em;
+}

@@ -1,0 +1,23 @@
+.fl { float: left; }
+.fr { float: right; }
+.endr { margin-right: 0!important; }
+.clear { clear: both; }
+
+html { height:100%; background: #191A17 url('main_bg.png') 50% 0 no-repeat; }
+body { background: url('tree_bg.png') 0 100% repeat-x; font-family: 'Coming Soon', cursive; }
+html>body { min-height: 100%; height: auto; }
+
+#wrapper { margin: 0 auto; width: 1008px;}
+
+/* Header */
+#header { padding-top: 56px; text-align: center; }
+#header h1 { color: #515E42; font-size: 125px; text-shadow: 0 0 40px #515E42; }
+#header h3 { color: #000; font-size: 35px; font-family: 'Advent Pro', sans-serif; text-shadow: 1px 1px 1px #515E42;}
+#header h5 { color: #515E42; font-size: 50px; font-family: 'Advent Pro', sans-serif; text-shadow: 1px 1px 1px #191A17; margin-top: 210px;}
+#header h5 a { text-decoration: none; color: inherit; }
+#lookingup {
+	position: fixed;
+	margin: 0 auto; width: 1008px;
+	bottom: -5px;
+	text-align: center;
+}

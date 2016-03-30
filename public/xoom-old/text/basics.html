@@ -1,0 +1,187 @@
+<html><head><title></title></head>
+<body bgcolor="black" text="black">
+
+<table cols=2 border=0 width=100% cellpadding=0 cellspacing=0>
+<tr><td width=200>&nbsp;</td><td width=*>&nbsp;</td></tr>
+<tr><td width=* colspan=2 align=left valign=top bgcolor="#000000">
+<img src="images/title_left.gif" border=0 alt=""><img src="images/title_middle.gif" border=0 alt=""><img src="images/title_right.gif" border=0 alt=""></td></tr>
+<tr><td width=200><img src="images/title_line2_left.gif" border=0 alt=""></td><td width=* bgcolor="#FFFFFF">&nbsp;</td></tr>
+<tr><td width=200 align=center valign=center><a href="../index.html"><img src="images/go_back.gif" border=0 alt="home"></a></td><td align=left valign=top bgcolor="#ffffff"><ul>
+
+<font size="4" face="Arial"><b>Basic Engine Components - Component Overview</b></font>
+
+<p><font face="Arial"><b><i>The world and world space:</i></b></font></p>
+
+<p>The world is (virtually) infinite. Not limited to spatial
+constraints by the computer (memory). Each location saved
+seperately. Classes saved in a sepeare file, associated with
+the seperate object/location files (ie header files).</p>
+
+<p>Real Time &#150; Based on real-world time &amp; information:</p>
+
+<ul>
+    <li>Wind, Rain, Sun, Moon</li>
+    <li>Temperature</li>
+    <li>Night/Day</li>
+    <li>Weekends</li>
+    <li>Geography</li>
+    <li>Other location-specific broad-area definitions (ie
+        radioactivity, storms, sound of police sirens etc)</li>
+</ul>
+
+<p>All items in world (including world) are objects.</p>
+
+<p>The world has limits. Anything pushed or created beyond those
+limits immediately removed from a class (ie removed from
+existence). To build onto the world, you would need to extend the
+limits of the world class, or build a &#145;portal&#146; to a new
+world class elsewhere (ie different astral plane, etc)</p>
+
+<p>&nbsp;</p>
+<p><font face="Arial"><b><i>Components of the World Space:</i></b></font></p>
+
+<p><font face="Arial">Objects:</font></p>
+
+<ul>
+    <li>Exist (all objects in a class exist &#150; remove from a
+        class, you remove the object)</li>
+    <li>Have Properties</li>
+    <li>Move or be moved</li>
+    <li>Be created or removed </li>
+    <li>Have an owner, group and modifier properties (ie someone
+        else can pick it up and move it, but not destroy it).</li>
+    <li>Have a status: Alive (player or bot) or Dead (player or
+        bot) or Non-living (class, object, world, portal)</li>
+    <li>Have properties removed, added or updated in real-time</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font face="Arial">Classes:</font></p>
+
+<ul>
+    <li>Define broad-term existence of object.</li>
+    <li>Define function of objects. Ie A room or location is an
+        object that can contain other objects (people,
+        interaction object, exits etc)</li>
+    <li>Define use of object. Object may have class of
+        &#145;container&#146; (or room, box, world), which means
+        it has the ability to contain other, therefore can be
+        opened or obstructed. May contain many items</li>
+    <li>Classes aren&#146;t real-world objects, only definition
+        files.</li>
+    <li>Classes have structural definitions (non-interacting
+        non-visible) available, to determine context of action in
+        class. Ie a cup can be picked up, drunk from, smashed. A
+        plate can be smashed, thrown. A door can be picked up. A
+        door may need 2 people to pick it up (ie have a weight
+        property)</li>
+    <li>Many Classes don&#146;t have to be set, or if set
+        don&#146;t have to be acted upon directly. Ie a dog may
+        have a sound property that defines different actions
+        &#150; barking, growling, whining &#150; that occur at
+        different times, whether an action has been performed on
+        it or not (ie it might just want to bark at the moon
+        &#150; it doesn&#146;t have to, but might have heard
+        other dogs barking at the moon)</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font face="Arial">Actions:</font></p>
+
+<ul>
+    <li>An action is based on a class</li>
+    <li>An action is tried, and if a class property is set that
+        the action can perform. Ie a room has an openable
+        property, set by a door, set by a lock. A lock has an
+        action that it sets an openable property against an
+        object (in this case a door). The door has an action that
+        sets an openable property against another object (in this
+        case a room). The room has no action set, so it&#146;s
+        just a non-living object (a location object).</li>
+    <li>Actions can be learned. A crowbar may be used to open a
+        crate. The crowbar may then be used to try to open the
+        lock. The crowbar has the same ability as a key, it opens
+        something. Therefore if the class that lets a key open a
+        door is activated by a crowbar, the same action may apply
+        (if the lock is weak enough. The lock would have to have
+        a propety that said &#145;is breakable&#146;, which would
+        reflect a group of object that is allowed to be destroyed
+        by someone other than the owner)</li>
+    <li>Actions apply to everything. If a class exists an action
+        can perform, the action is doable, else not.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font face="Arial">Function:</font></p>
+
+<ul>
+    <li>The class-definition for an action</li>
+    <li>An action may be to run. This requires a function set
+        that picks the best direction, then tries to move that
+        way fast.</li>
+    <li>May be attached to an object (ie, The functions of a doorknob
+        would be 'turn' and 'move' related actions, such as twist and pull)</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font face="Arial">Players:</font></p>
+
+<ul>
+    <li>Different classes of player:</li>
+</ul>
+
+<ul>
+    <li><ul>
+            <li>System: Non-interacting bots that perform
+                functions in the game (ie daemons that take away
+                dead players)</li>
+            <li>User: Someone using a computer to control an
+                avatar in the construct (world)</li>
+            <li>Bot: A computer-controlled player, has a series
+                of properties, and action properties steerable by
+                the system or users. Can interact with the
+                environment (ie steal, walk, talk). Can learn (ie
+                have classes added to them)</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>Can learn new tasks (ie have classes attached to them. Ie
+        learn how to swordfight.</li>
+    <li>Has abilities classes:</li>
+</ul>
+
+<ul>
+    <li><ul>
+            <li>God - can create/destroy anything</li>
+            <li>Creator - can create worldspace. Create Objects.
+                Create actions (therefore functions)</li>
+            <li>Mover - can move objects</li>
+            <li>Interactable - can have classes attached (ie
+                talk, pick up) interact with objects (normal)</li>
+            <li>Destroyable class - can be attached to objects,
+                can be performed with players etc with correct
+                class ability or object ownership (ie owns a
+                crowbar and knows how to use it)</li>
+            <li>Ghost class - (special function) can&#146;t
+                interact but is a spectator. Can move anywhere
+                (except outside the world space). Cannot be seen,
+                Or interacted with.</li>
+        </ul>
+    </li>
+</ul>
+
+<p>&nbsp;<p>
+<a href="home.html">Home</a> | <a href="classic.html">Classic IF Engines</a> | <a href="scalable.html">Scalable IF Engines</a><br>
+<a href="basics.html">Basics</a> | <a href="specs.html">Specifics</a> | <a href="flowcharts.html">Program Flowcharts</a><br>
+<a href="objects.html">Objects</a> | <a href="classes.html">Classes</a> | <a href="actions.html">Actions</a> | <a href="players.html">Players</a> | <a href="functions.html">Functions</a><br>
+<a href="feedback.html">Feedback</a> | <a href="code.html">Code Examples</a><br>
+</ul></td></tr>
+<tr><td align=center><font color="#FFFFFF" face="arial">design and content<br>(c) tim st.clair 1999</td><td>&nbsp;</td></tr>
+</table>
+</body></html>

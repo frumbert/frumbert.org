@@ -1,0 +1,70 @@
+<html><head><title>// Frumbert's Follies //</title>
+<script language="JavaScript1.1">
+
+<!--
+// all code by tim st.clair (see credits page for code references)
+// if you use it, email me the url so i can have a look..
+
+iscompat = false;
+if( parseInt( navigator.appVersion ) >= 3 ) { iscompat = true; }
+if( iscompat )
+{
+tv2bon = new Image; tv2bon.src = "telly_tv2b2_small.gif";
+tv2boff = new Image; tv2boff.src = "telly_tv2b1_small.gif";
+tv4c1on = new Image; tv4c1on.src = "telly_tv4c1b_small.gif";
+tv4c1off = new Image; tv4c1off.src = "telly_tv4c1a_small.gif";
+tv4c2on = new Image; tv4c2on.src = "telly_tv4c2b_small.gif";
+tv4c2off = new Image; tv4c2off.src = "telly_tv4c2a_small.gif";
+tv4c4on = new Image; tv4c4on.src = "telly_tv4c4b_small.gif";
+tv4c4off = new Image; tv4c4off.src = "telly_tv4c4a_small.gif";
+tv5aon = new Image; tv5aon.src = "telly_tv5a2_small.gif";
+tv5aoff = new Image; tv5aoff.src = "telly_tv5a1_small.gif";
+tv6aon = new Image; tv6aon.src = "telly_tv6a2_small.gif";
+tv6aoff = new Image; tv6aoff.src = "telly_tv6a1_small.gif";
+tv6con = new Image; tv6con.src = "telly_tv6c2_small.gif";
+tv6coff = new Image; tv6coff.src = "telly_tv6c1_small.gif";
+}
+
+function setimage(imagename, image) {
+    if (iscompat) document.images[imagename].src = eval(image + ".src");
+}
+
+vPos=217;
+
+function ResetScrollPage(position) {
+  window.frames["Screen"].scroll(0,position);
+  vPos=position;
+}
+
+function ScrollPage(amount) {
+vPos+=amount;
+window.frames["Screen"].scroll(0,vPos);
+}
+
+function MakeASillyNoise() {
+}
+
+//-->
+</script></head>
+
+<body onLoad="ResetScrollPage(109)" bgcolor="#000000" text="#FFFFFF" topmargin=2 text=white link=white vlink=white>
+<center>
+<table width=90% cols=2 border=0 cellpadding=0 cellspacing=8 align=center valign=top>
+<tr><td align=center valign=center width=49%>
+<table cols=3 border=0 cellpadding=0 cellspacing=0><tr><td><img src="telly_tv2a_small.gif" border=0 alt=""></td><td><img src="telly_tv2b1_small.gif" border=0 alt="" name="tv2b" onMouseOver="setimage('tv2b', 'tv2bon')" onMouseOut="setimage('tv2b','tv2boff')" OnClick="MakeASillyNoise()"></td><td><img src="telly_tv2c_small.gif" border=0 alt=""></td></tr></table>
+<table border=0 cellpadding=0 cellspacing=0><tr><td><img src="telly_tv3_small.gif" border=0 alt=""></td></tr></table>
+<table cols=3 border=0 cellpadding=0 cellspacing=0><tr><td><img src="telly_tv4a_small.gif" border=0 alt=""></td><td width=140 height=109><iframe frameborder=0 name="Screen" src="telly_screen.html" scrolling=no width=140 height=109></iframe></td><td><a href="#" ><img src="telly_tv4c1a_small.gif" border=0 alt="Back a Channel" name="tv4c1" onMouseOver="setimage('tv4c1', 'tv4c1on')" onMouseOut="setimage('tv4c1','tv4c1off')" onClick="ScrollPage(-109)"></a><br><a href="#"><img src="telly_tv4c2a_small.gif" border=0 alt="Forward a Channel" name="tv4c2" onMouseOver="setimage('tv4c2', 'tv4c2on')" onMouseOut="setimage('tv4c2','tv4c2off')" onClick="ScrollPage(109)"></a><br><img src="telly_tv4c3_small.gif" border=0 alt=""><br><img src="telly_tv4c4a_small.gif" border=0 alt="Reset Channels" name="tv4c4" onMouseOver="setimage('tv4c4', 'tv4c4on')" onMouseOut="setimage('tv4c4','tv4c4off')" onClick="ResetScrollPage(109)"><br></td></tr></table>
+<table border=0 cellpadding=0 cellspacing=0><tr><td><a href="../index.html"><img src="telly_tv5a1_small.gif" border=0 alt="home" name="tv5a" onMouseOver="setimage('tv5a', 'tv5aon')" onMouseOut="setimage('tv5a','tv5aoff')"></a></td><td><img src="telly_tv5b_small.gif" border=0 alt=""></tr></table>
+<table cols=3 border=0 cellpadding=0 cellspacing=0><tr><td><img src="telly_tv6a1_small.gif" border=0 alt="" name="tv6a" onMouseOver="setimage('tv6a', 'tv6aon')" onMouseOut="setimage('tv6a','tv6aoff')"></td><td><img src="telly_tv6b_small.gif" border=0 alt=""></td><td><img src="telly_tv6c1_small.gif" border=0 alt="" name="tv6c" onMouseOver="setimage('tv6c', 'tv6con')" onMouseOut="setimage('tv6c','tv6coff')"></td></tr></table></td>
+<td width=49% align=left valign=center><font face=arial color=#FFFFFF size=+2>JavaScripts:</font><br><font face=arial color=#FFFFFF>Please feel free to use these on<br> your site. Please link back<br>to my site if you want.</font></td>
+</tr></table><br><p>
+<H3>A</H3>
+<I>22 April 1999</I><BR>
+I've just suffered a MAJOR system error (my drive poo'd itself) - ALL MY JAVASCRIPTS are GONE.<p>
+stuff likfe this: <a href="viewport/viewport_nav.html">View Port</a><P>
+<i>20th november 1999</i><br>
+Update almost ready!!<p>
+
+<a href="../index.html">back</a>
+</body>
+</html>

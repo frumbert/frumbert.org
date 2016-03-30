@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>timstclair.me</title>
+    <link rel="stylesheet" type="text/css" href="goop/reset.css">
+    <link rel="stylesheet" type="text/css" href="yore.css">
+    <script type="text/javascript" src="goop/jquery.min.js">
+</script>
+    <script type="text/javascript">
+         (function($) { 
+                var defaults = {
+                    total : 10
+                };
+                $.dots = function(settings) {
+                    $.dots.settings = $.extend({}, defaults, settings);
+                    for (i = 0; i < $.dots.settings.total; i++) $.dots.zip($.dots.create());
+                    return;
+                };
+                $.dots.create = function(){
+                    var z = $.dots.random(5),
+                        c = $.dots.random(255),
+                        a = Math.random();
+                    return $('<div />').css({
+                            width: z,
+                            height: z,
+                            "background-color": "rgba("+c+","+c+","+c+","+a+")",
+                            position: "absolute",
+                            "z-index": -1,
+                            top: $.dots.random($(window).height()),
+                            left: $.dots.random($(window).width())
+                        }).appendTo(document.body);
+                }
+                $.dots.zip = function(sp) {
+                	var l = parseInt($(window).width(),10) / 2,
+                        l2 = l + $.dots.random(l);
+
+                    $(sp).animate({
+                        top: $.dots.random(($(document).height())),
+                        left: l2
+                    }, (($.dots.random(10) + 5) * 2000), function() {
+                        $.dots.zip(sp)
+                    });
+                };
+                $.dots.random = function(max) {
+                    return Math.ceil(Math.random() * max) - 1;
+                }
+                    
+            })(jQuery);
+            $(document).ready(function() {
+                $.dots({
+                    total : 20
+                });
+            });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>tim st. clair</h1>
+    </header>
+
+    <section>
+        <article>
+            <p>Hi, I am a web coder from coffs harbour, australia.</p>
+        </article>
+
+        <article>
+            <h2>Avide / Coursesuite</h2>
+            <p>I currently work part time at <a href="http://etc.coursesuite.com.au">CourseSuite</a> / <a href="http://wvide.com.au">Avide Elearning</a>, producing e-learning materials, skinning Moodle sites, crafting SCORM packages, and integrating elearning into corporate products.</p>
+
+            <p>Some of our work includes products and development for:</p>
+
+            <ul>
+                <li>
+                    <a href="http://www.avant.org.au/Risk/IQ/">Avant</a> - we have implemented over 60 courses and provided a custom themed Moodle installation with rich jQuery-based video and interactions
+                </li>
+
+                <li>
+                    <a href="http://www.aspenmedical.com.au/">Aspen Medical</a> - skinning and integrating their Moodle and other portal sites.
+                </li>
+
+                <li>
+                    <a href="http://www.globalskm.com/">Sinclair Knight Merz</a> - put together a learning package for their CourseMill LMS that demonstrated their various communication technologies and tools
+                </li>
+
+                <li>
+                    <a href="http://www.cliniciansmatrix.com">Clinicians Matrix</a> - a moodle site development featuring a custom skin, wordpress single-sign on authentication and web services, and CPD collaboration.
+                </li>
+
+                <li>
+                    <a href="http://www.ittacademy.net.au/">International Teacher Training Academy (Australia)</a> - implementation, advice and custom design work for this Moodle-based learning provider.
+                </li>
+
+                <li>
+                    <a href="http://etc.coursesuite.com.au/">Enterprise & Training Company Ltd</a> - Moodle-based portal with custom skin, PayPal sales integration, and customisations to environment.
+                </li>
+            </ul>
+
+            <p>I also have created an internal webapp for rapid content authoring for Avide / CourseSuite that significantly cost-reduces the content authoring process.</p>
+        </article>
+
+        <article>
+            <h3>Janison (previous work)</h3>
+
+            <p>I worked for over a decade at a local company known as <a href="http://janison.com.au">Janison</a>, who produced [then] an e-learning management and authoring tool (LMS) known as <b>Toolbox</b> (later called <b>Janison LMS</b>). Janison have since moved out of the LMS space.</p>
+
+            <p>Some of the key areas I developed (often by myself) in the LMS system were:</p>
+
+            <ul>
+                <li>
+                    <a href="#portals">portals</a>
+                </li>
+
+                <li>
+                    <a href="#chat">collaboration</a>
+                </li>
+
+                <li>
+                    <a href="#lms">learning & assessment management</a>
+                </li>
+
+                <li>
+                    <a href="#sql">database optimisation</a>
+                </li>
+
+                <li>
+                    <a href="#helpdesk">support and helpdesk</a>
+                </li>
+            </ul>
+
+            <p>I parted ways as their company direction changed, preferring to work in smaller organisations without top-heavy management.</p>
+        </article>
+
+        <article>
+            <h3>McDonagh Computers (early days)</h3>
+
+            <p>In the late 1990's, I was a computer repair technician working for a Tamworth based organisation that sold and repaired computers. I started as the single technician in a 4 person business, and helped build it up to a 20+ staff organisation across 3 towns in the region.</p>
+
+            <p>My skills in particular were dealing with on-site repair (out of town, often on mining sites, factories, depots, or other small businesses) without access to many spare parts, and thus I learned to improvise fixes and always left a site with a workaround where a final solution was not possible. I worked with AS400 systems, Windows NT networks, Novell Netware LAN's, Windows 3.11 networks, and even the crazy phone-cable jigs that Apple had before Ethernet solved everything.</p>
+
+            <p>I also was the region's only "Mac" guy, servicing everything from re-soldering ancient Apple 2's through to repairing the flyback transformers in high-end RasterOps monitors, plus laptop repairs, data recovery, warranty replacements, you name it.</p>
+
+            <p>Late in the days of McDonagh, I also got into Perl-based web programming - the early days of the dynamic web.</p>
+
+            <p>I left McDonagh's to join the startup Janison, who offered further development of my programming and design skills.</p>
+        </article>
+    </section>
+
+    <footer>
+        <h2>Contact me</h2>
+
+        <p>You can see more information about me on my other web sites.</p>
+
+        <ul>
+            <li>
+                <a href="http://about.me/timstclair/">About.me profile</a>, which links to many sites and profiles around the web
+            </li>
+
+            <li>
+                <a href="http://frumbert.org/">Frumbert.org</a> - my code site, with links off to my repositories and such
+            </li>
+        </ul>
+
+        <h3>About this theme:</h3>
+
+        <p>I wanted to have a site that reflected my roots in the web. I started <i>using</i> the web in 1992 on the NCSA Mosiac web browser, and <i>coding</i> it in 1995, when most of the web looked like this page.</p>
+    </footer>
+</body>
+</html>

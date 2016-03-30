@@ -1,0 +1,9 @@
+<style>
+BODY{font-family:verdana,arial,helvetica, sans-serif; font-size: 10pt; color: black;}
+.bld{font-weight: bold; font-size: 10pt; }
+.norm{font-weight: none; font-size: 10pt; }
+.bright{color:blue; }
+.link{color:red; font-size:10pt; font-family:verdana,arial,helvetica; font-weight: bold; letter-spacing:0pt; text-decoration:none; cursor:hand; }
+.coffee{color:brown; font-size:10pt; font-family:verdana,arial,helvetica; font-weight: bold; letter-spacing:0pt; text-decoration:none; cursor:hand; }
+A:hover.mw {color: #0088ff;}
+</style>

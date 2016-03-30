@@ -1,0 +1,21 @@
+Open PvP Conflict  	No
+Restricted PvP Conflict 	No
+Conflicting Factions (PvP) 	2
+Land Control (PvP) 	No
+Role-Playing Environment 	Yes
+Player-run Economy 	Yes
+Crafting 	Yes
+Player Housing (Instanced) 	No
+Player-built Cities 	Yes
+Player-built Houses 	Yes
+Player Law/Governing System 	No
+Bloodline/Heritage System 	No
+Religions 	No
+Permanent Death 	No
+Player Mounts 	No
+Player Pets 	No
+Social Cloth 	No
+Player Statistics (Ladder) 	No
+Instanced Areas 	No
+Epic (Raid) Content 	Yes
+DirectX 9 Graphics 	Yes

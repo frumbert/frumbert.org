@@ -1,0 +1,71 @@
+<html><head><title></title></head>
+<body bgcolor="black" text="black">
+
+<table cols=2 border=0 width=100% cellpadding=0 cellspacing=0>
+<tr><td width=200>&nbsp;</td><td width=*>&nbsp;</td></tr>
+<tr><td width=* colspan=2 align=left valign=top bgcolor="#000000" nowrap>
+<img src="images/title_left.gif" border=0 alt=""><img src="images/title_middle.gif" border=0 alt=""><img src="images/title_right.gif" border=0 alt=""></td></tr>
+<tr><td width=200><img src="images/title_line2_left.gif" border=0 alt=""></td><td width=* bgcolor="#FFFFFF">&nbsp;</td></tr>
+<tr><td width=200 align=center valign=center><a href="../index2.html"><img src="images/go_back.gif" border=0 alt="home"><br>back</a></td><td align=left valign=top bgcolor="#ffffff"><ul>
+
+<font size="4" face="Arial"><b>Welcome to the Macroverse</b></font><p>
+<i>17th April, 1999</i><p>
+Reality is dissolving.<br>
+The screen in front of you seems to become transparent, even as the walls around you fade away. Soon, you find yourself
+adrift in the void; the place between worlds. Time has no meaning here. There's no up, no down. No big or small. You're sense of self dissolves,
+reforms, dissolves again, reformes again... Reality bubbles, froth and foam surround you...
+<br>...and you find youself standing in a field dotted with
+trees. It's quite hot again today, and the clouds seem to sit in the air, acting as if nothing
+has happened. You look out over your campsite, strewn across the landscape from last night's storm, wondering if you'll every sort it out
+again. Maybe you think you hear a dog barking, out there beyond the trees, but maybe it's just your imagination; this desolation plays
+tricks on your mind. You're alone out here, and you're not really sure why. Maybe there's something you have to do, but you can't recall
+what it is.<br>
+A gentle breeze picks up, cool, from the south. It blows against your tent, making the fly-screen door flap.<br>
+There is nothing beyond the field, the makeshift barrier between you and the void surrouning the world seems awfully flimsy today. Your watch
+blips: It's nine o'clock. You remember: Time to get to work, there's a world waiting to be built.<p>
+<hr width=50%>
+It could be the next run of the mill text adventure. Imagine if instead of just reading a story, moving from location to location,
+you could create the world as you go, and interact with other people who are also building or remodelling the world around them, maybe
+just building a home, or there to talk with others.<p>
+Maybe it's pure text. Maybe it's 3D. What's the difference?<p>
+<font size="4" face="Arial"><b>Objects-Definition Engine</b></font><p>
+So what is a scalable objects-definition engine? It just sounds like some fancy name a programmer made up. Essentially, it is.<p>
+I've decided to put together a site detailing an idea that's been kicking around in my head for the last couple of years. Years ago, I used to
+play a number of text adventures. They were popular then, the alternative games were fun, but text adventures and Multi User Domains (MUD's) allowed me to interact with the computer and other users in a unique way.<br>
+It lost its charm.<br>
+I found myself battling aliens or monsters or bad guys in 3D worlds, so engrossing that I bought special 3D accelleration hardware to run them properly. I played point and click adventures. Some of them were difficult finish, but essentially it was simply a matter of clicking the mouse a few billion times. The graphics, the sound, the ambience of these games was (and still is) fantastic.<br>
+I went back and played Zork again (all of them). They still lacked something. There was a lack of detail I would have liked, a lack of interaction with each location. It was Interactive Fiction, and I was after Virtual Reality.<br>
+I still am.<p>
+The idea that's been bouncing around in my head these last few years is, essentially, this:<p>
+<ul><li>Wouldn't it be great if I could be playing a multi-user game, and I were viewing the world in 3D usign all my expensive 3D hardware, but I was playing other people who were using text interfaces, or playing those 'Swords and Sourcery' type adventure games, all within the same world space.</ul><p>
+The idea is great. Pulling it off would require a few things...<p>
+<ul><li>Some kind of server that handles everything, from what software a client is accessing the server with, to every action the player does.
+<li>Some sort of games-definition file that allowed players tramping around in a 3D mechwarrior-style outfit to look 3D to other players with a 3D interface, to be accurately described to players using a text interface (in real time), and to appear in whatever form any other client expects to see them from.
+<li>Some sort of handler for the passing of time. People playing a text adventure generally take a whole klot more time to respond to a situation than does a 3D player. In the 3D world, you do an action (ie shoot a weapon) and there's immediate feedback, and immediate response: you can see and hear the world around you. In text adventures (IF, printed books etc) the user can walk away at any time, and come back to find the game (or book) in exacly the same state they left it in (MUD's are a bit different).
+<li>Some sort of handler for objects in the game. You have to be able to describe an object that is going to be used in a number of different client engines, whether it be text on a screen, or graphics (flat ot 3d), the representation of those objects have to match.
+</ul>
+<p>
+This last point is probably the reason nobody else has tried to create a game, or even a virtual environment, in this form. There are any number of virtual realities avaliable nowdays. You only have to look at work done by companies like www.worlds.net (alphaworld) to see that 3D graphical environments that can contain people, houses, streets, sounds and music, can and do exist, and have done for years. I have had people say to me (after showing them my house in Alphaworld) 'Yes, but what do you do? Can you fight people, like in Quake?'. If it's 3D, it's a game. It's the same mentality as people who think [about computers] if it's not a spreadsheet, it's not work.<br>
+I've put people like this in front of machines running: a) a text adventure and b) games like 'you don't know jack', and their responses have averaged the idea that they don't know what to do, because they think it's not interactive; more accurately, that it's a computer, therefore it's <i>not</i> interactive. Computer=Furniture. Once they work out that the game is very clever in what it does, they immediately start to say 'Can you do this?' to things, that invariably return the answer 'no'. All games, or interactive environments (say a virtual museum or library) should have the functionality built in them to at least offer the response as 'Yes, but you have to make it do that.'
+<p>&nbsp;<p>
+<font size="4" face="Arial"><b>To summarise</b></font><p>
+I'm trying to 'rough out' an engine that is capable of 'scaling up' to become an engine that is capable of driving a text adventure, AND a 3D adventure, AND a virtual environment, AND whatever else people conceive to be a system that requires knowledge or information on objects and their relationship to each other and the world around them. It's a big ask, it's a big project.<p>
+The engine needs to be able to handle objects, and to be able to define what an object's purpose is. It also needs the ability to modify the function or properties of an object. For example,<i>you can dig a hole with a shovel, and eat cornflakes with a spoon, but you might not have a shovel and need a hole dug: You dig it with the spoon.</i><p>
+Therefore, it's called the 'Scalable Objects-Definition Engine': Scalable because it needs to have the ability to grow to meet different requirements. Objects-Definition because 'things' that the engine refers to (objects) need to be classified in some form (defined). Simple huh?<br>
+So, I've tried to define the <a href="basics.html">basics</a> of how the engine works.<br>
+<I>btw; if anyone would like to write it for me, it would be appreciated ;-)</I>
+<p>&nbsp;<p>
+<font size="4" face="Arial"><b>Interactive Fiction (IF) Engines</b></font><p>
+Here's a quick overview of both engine types.<p>
+<a href="classic.html">Classic IF Engines</a> | <a href="scalable.html">Scalable IF Engines</a>
+<p>
+<font size="4" face="Arial"><b>Table of Contents</b></font><p>
+
+<p>&nbsp;<p>
+<a href="home.html">Home</a> | <a href="basics.html">Basics</a> | <a href="specs.html">Specifics</a> | <a href="flowcharts.html">Program Flowcharts</a><br>
+<a href="objects.html">Objects</a> | <a href="classes.html">Classes</a> | <a href="actions.html">Actions</a> | <a href="players.html">Players</a> | <a href="functions.html">Functions</a><br>
+<a href="feedback.html">Feedback</a> | <a href="code.html">Code Examples</a><br>
+</ul></td></tr>
+<tr><td align=center><font color="#FFFFFF" face="arial">design and content<br>(c) tim st.clair 1999</td><td>&nbsp;</td></tr>
+</table>
+</body></html>

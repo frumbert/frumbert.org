@@ -1,0 +1,455 @@
+<HTML><HEAD><TITLE>-[ frumbert's follies ]-</title>
+
+<meta http-equiv="Page-Exit" content="revealTrans(Duration=3.0,Transition=17)">
+
+<script language="javascript">
+  setTimeout ("changePage()", 0);
+  function changePage() {
+    if (self.parent.frames.length != 0)
+    self.parent.location= "index.html";
+  }
+</script>
+
+<SCRIPT Language=JScript>
+agent = navigator.userAgent; browserVer = 2;
+if (agent.indexOf("a/",6) != -1){browserVer = 1}
+if (browserVer == 1)
+{
+  BUTTON_FRAMES=8;
+  MIN_FRAME=1;
+  MAX_FRAME=9;
+  AKU=1;
+  Button = new Array(6);
+  Button[0] = new buttontype("Sleep()","sleeping",100,35,BUTTON_FRAMES,10);
+  Button[1] = new buttontype("Button[1].Go()","button1",254,70,BUTTON_FRAMES,20);
+  Button[2] = new buttontype("Button[2].Go()","button2",254,70,BUTTON_FRAMES,20);
+  Button[3] = new buttontype("Button[3].Go()","button3",254,70,BUTTON_FRAMES,20);
+  Button[4] = new buttontype("Button[4].Go()","button4",254,60,BUTTON_FRAMES,20);
+  Button[5] = new buttontype("Button[5].Go()","button5",254,70,BUTTON_FRAMES,20);
+  Names = new Array("frame","m1-","m2-","m3-","m4-","m5-");
+  for(i = 1; i < 6; i++)
+  {
+    Button[i].Status = 0;
+    Button[i].Destination = 0;
+    for(j = 0; j < 9; j++)
+    {
+      Button[i].Images[j+1] = new Image(Button[i].Width,Button[i].Height);
+      Button[i].Images[j+1].src = Names[i] + j + ".gif";
+    }
+  }
+  ActiveButton=0;
+  PrevActiveButton=1;
+  SLEEPS=0;
+  SLEEPSc=0;
+  Walk = new Array(2);
+  Walk[1] = new walktype(5,0,4,18,1,3);
+  Walk[2] = new walktype(6,0,4,18,1,5);
+
+  WalkOrder = new Array(0,1,2,3,4,5);
+}
+
+function buttontype(oname,name,width,height,frames,delay)
+{
+  this.Name = name;
+  this.ObjName = oname;
+  this.Width = width;
+  this.Height = height;
+  this.Frames = frames;
+  this.Images = new Array(frames);
+  this.Status = 1;
+  this.Destination = 1;
+  this.Incr = 1;
+  this.Set = set_button;
+  this.Set2 = set_button_now;
+  this.ID = null;
+  this.Running = false;
+  this.Delay = delay;
+  this.Start = timer_start;
+  this.Stop = timer_stop;
+  this.tGo = timer_recall;
+  this.Go = button_step;
+}
+
+function timer_start()
+{
+  if(this.Running == true)
+  {
+    clearTimeout(this.ID);
+  } else
+  {
+    this.Running = true;
+  }
+  this.ID = setTimeout(this.ObjName,this.Delay);
+}
+
+function timer_stop()
+{
+  if(this.Running == true)
+  {
+    clearTimeout(this.ID);
+    this.Running = false;
+  }
+}
+
+function timer_recall()
+{
+  this.Running = true;
+  this.ID = setTimeout(this.ObjName, this.Delay);
+}
+
+function set_button(dest, incr)
+{
+  this.Incr = incr;
+  this.Destination = dest;
+  if(this.Running==false)
+  {
+    eval(this.ObjName); 
+    this.Start();
+  }
+}
+
+function set_button_now(dest, incr)
+{
+  this.Incr = incr;
+  this.Destination = dest;
+  this.Stop();
+  eval(this.ObjName);
+  this.Start();
+}
+
+function button_step()
+{
+  this.Running=false;
+  if(this.Destination > this.Status)
+  {
+    this.Status += this.Incr;
+    if(this.Status > this.Destination)
+    {
+      this.Status = this.Destination;
+      document.images[this.Name].src = this.Images[this.Status].src;
+    } else
+    {
+      document.images[this.Name].src = this.Images[this.Status].src;
+      this.tGo();
+    };
+  } else
+  {
+    this.Status -= this.Incr;
+    if(this.Status < this.Destination)
+    {
+      this.Status = this.Destination;
+      document.images[this.Name].src = this.Images[this.Status].src;
+    } else
+    {
+      document.images[this.Name].src = this.Images[this.Status].src;
+      this.tGo();
+    };
+  }
+}
+
+function walktype(stat,dir,min,max,inc,data)
+{
+  this.Status=stat;
+  this.Direction=dir;
+  this.Incr=inc;
+  this.Min=min;
+  this.Max=max;
+  this.Set = walk_set;
+  this.Step = walk_step;
+  this.Data = data;
+}
+
+function walk_step()
+{
+  if(this.Direction == 0)
+  {
+    this.Status += this.Incr;
+    if(this.Status >= this.Max)
+    {
+      this.Direction = 1;
+    }
+  } else
+  if(this.Direction == 1)
+  {
+    this.Status -= this.Incr;
+    if(this.Status <= this.Min)
+    {
+      this.Direction = 0;
+    }
+  } else
+  if(this.Direction == 2)
+  {
+    this.Status += this.Incr;
+    if(this.Status >= this.Max)
+    {
+      this.Status = this.Min ;
+    }             
+  }
+}
+
+function walk_set(stat,dir,min,max,inc,data)
+{
+  this.Status=stat;
+  this.Direction=dir;
+  this.Incr=inc;
+  this.Min=min;
+  this.Max=max;
+  this.Data=data;
+}
+
+function steptype(stype)
+{
+  this.Status = new Array(1,2,3,4,5);
+  this.Value  = new Array(9,9,9,9,9);
+  this.Min=1; 
+  this.Max=5;
+  this.DataMin=1;
+  this.DataMax=9;
+  this.Type=stype;               // 1 means simple rotation all together
+  this.ReSet = step_reset;
+  this.Step = step_step;
+  this.Wait = 30;
+}
+
+function step_reset(min,max,dmin,dmax,stype,wait)
+{
+  for(h=1;h<6;h++)
+  {
+    this.Status[h]=h ;
+    this.Value[h]=9;
+  }
+  this.Min=min; 
+  this.Max=max;
+  this.DataMin=dmin;
+  this.DataMax=dmax;
+  this.Type=stype;         
+  this.Wait = wait;
+}
+
+function step_step()
+{
+  if(this.Type==0)
+  {
+    for(r=this.Min;r<=this.Max;r++)
+    {
+      this.Value[r]+=1;
+      if(this.Value[r] > this.DataMax)
+      {
+        this.Value[r]=this.DataMin;
+      }
+    }
+  }
+}
+
+SS = new steptype();
+
+function Sleep()
+{
+  if(SLEEPS==1)
+  {
+    Button[0].Running = false;
+    Walk[1].Step();
+    Walk[2].Step();
+    if((Walk[1].Status>6) && (Walk[1].Status<12))  Button[Walk[1].Status-6].Set2(Walk[1].Data,3);
+    if((Walk[2].Status>6) && (Walk[2].Status<12))  Button[Walk[2].Status-6].Set2(Walk[2].Data,1);
+    Button[0].Delay=200;
+    Button[0].tGo();
+  } else
+  if(SLEEPS==2)
+  {
+    Button[0].Running = false;
+    SLEEPSc=500;
+    SS.ReSet(1,6,1,9,1,10);
+    SLEEPS=3;
+    Button[0].Delay=20;
+    Button[0].tGo();
+  } else
+  if(SLEEPS==3)
+  {
+    Button[0].Running = false;
+    Button[0].Running = false;
+    SS.Step;
+    for(s=1;s<6;s++)
+    {
+      Button[s].Set2(SS.Value[s],1);
+    }
+    Button[0].Delay=200;
+    SLEEPSc-=1; if(SLEEPSc == 0){SLEEPS=0; SLEEPSc=500;}
+    Button[0].tGo();
+  } 
+}
+
+function SetIt(butt)
+{
+  ActiveButton=butt;
+  if(PrevActiveButton != ActiveButton)
+  {
+    if(SLEEPS > 0)
+    {
+      Button[0].Stop();
+      SLEEPS = 0;
+      for(f=1;f<6;f++)
+      if(Button[f].Status!=MAX_FRAME)
+      {
+        Button[f].Set(MAX_FRAME,1);
+      }
+    }
+    if(PrevActiveButton>0)
+    {
+      Button[PrevActiveButton].Set(MAX_FRAME,1);
+    }
+    if(ActiveButton    >0) 
+    {
+      Button[ActiveButton].Set(MIN_FRAME,1);
+    }
+    PrevActiveButton = ActiveButton;
+    if(ActiveButton==0)
+   {
+      
+      if(SLEEPS == 0)
+      {
+        SLEEPS=1;
+        SLEEPSc=500;
+        Walk[1].Set(1,0,4,18,0,1);
+        Walk[2].Set(1,0,4,18,1,9);
+        Button[0].Delay=200;
+        Button[0].Start();
+     }
+
+    }
+  }
+}
+
+function TStart()
+{
+  if(browserVer == 1)
+  {
+    SetIt(0);
+  }
+}
+function TStop()
+{
+  if(browserVer == 1)
+  {
+    for(outi=0;outi<6;outi++)
+    {
+      if(Button[outi].Running==true) Button[outi].Stop();
+    }
+  }
+}
+
+onerror = null
+</SCRIPT>
+<script language="JavaScript1.1">
+iscompat = false;
+if( parseInt( navigator.appVersion ) >= 3 ) { iscompat = true; }
+
+function setimage(imagename, image) {
+    if (iscompat) document.images[imagename].src = eval(image + ".src");
+}
+
+if( iscompat ) {
+m0 = new Image; m0.src = "images/titlebar01-b.gif";
+m1 = new Image; m1.src = "images/titlebar01-con.gif";
+m2 = new Image; m2.src = "images/titlebar01-loc.gif";
+m3 = new Image; m3.src = "images/titlebar01-js.gif";
+m4 = new Image; m4.src = "images/titlebar01-des.gif";
+m5 = new Image; m5.src = "images/titlebar01-mp3.gif";
+}
+</script>
+<script language="JavaScript">
+function openWindow(url, w, h) { window.open(url,"","toolbar=0,location=0,status=0,menubar=0,scrollbars=0,width="+w+",height="+h) }
+</script>
+
+</HEAD>
+
+<body bgcolor="#707070" background="images/menu_bg.jpg" text="#D0D0D0" link="#FFFFFF" vlink="#D0D0D0" alink="#707070" onLoad="TStart()" onExit="TStop">
+<center>
+<table border="0" cellpadding=0 width=600><tr><td align=center><font color="#FFFFFF" face="Courier">W</font></td><td align=center><font color="#FFFFFF" face="Courier">e</font></td><td align=center><font color="#FFFFFF" face="Courier">c</font></td><td align=center><font color="#FFFFFF" face="Courier">l</font></td><td align=center><font color="#FFFFFF" face="Courier">o</font></td><td align=center><font color="#FFFFFF" face="Courier">m</font></td><td align=center><font color="#FFFFFF" face="Courier">e</font></td><td align=center>&nbsp;</td><td align=center><font color="#FFFFFF" face="Courier">T</font></td><td align=center><font color="#FFFFFF" face="Courier">o</font></td><td align=center>&nbsp;</td><td align=center><font color="#FFFFFF" face="Courier">M</font></td><td align=center><font color="#FFFFFF" face="Courier">y</font></td><td align=center>&nbsp;</td><td align=center><font color="#FFFFFF" face="Courier">M</font></td><td align=center><font color="#FFFFFF" face="Courier">i</font></td><td align=center><font color="#FFFFFF" face="Courier">n</font></td><td align=center><font color="#FFFFFF" face="Courier">d</font></td></tr></table><br>
+<pre>"...its where you stand                                
+          that determines what you see..."</pre>
+<br>
+<table cellspacing=0 cellpadding=0 border=0>
+<tr><td><a href="contact.html"><img src="images/menu000.gif" width=23 height=17 border=0></a></td><td><img src="images/menu001.gif" width=546 height=17></td><td><img src="images/menu002.gif" width=32 height=17></td></tr>
+<tr><td><img src="images/menu003.gif" width=23 height=27></td><td bgcolor="#313131" width=546 height=27 align=right valign=center><img src="images/menu_title.gif" border=0 alt=""></td><td><img src="images/menu005.gif" width=32 height=27></td></tr>
+<tr><td><img src="images/menu006.gif" width=23 height=350></td><td><table width=546 height=350 bgcolor="#313131" cellpadding=0 cellspacing=0 border=0 cols=3><tr><td width=* align=center valign=top>
+<A HREF="contact.html" target="_self" onmouseout="SetIt(0); setimage('m', 'm0')" onmouseover="SetIt(1); setimage('m', 'm1')"><IMG NAME="button1" SRC="m1-0.gif" width="254" height="70" border=0></A><br clear=all>
+<A HREF="sub_locution.html" onmouseout="SetIt(0); setimage('m', 'm0')" onmouseover="SetIt(2); setimage('m', 'm2')"><IMG NAME="button2" SRC="m2-0.gif" width="254" height="70" border=0></A><br clear=all>
+<A HREF="sub_puter.html" target="_self" onmouseout="SetIt(0); setimage('m', 'm0')" onmouseover="SetIt(3); setimage('m', 'm3')"><IMG NAME="button3" SRC="m3-0.gif" width="254" height="70" border=0></A><br clear=all>
+<A HREF="sub_oculator.html" target="_self" onmouseout="SetIt(0); setimage('m', 'm0')" onmouseover="SetIt(4); setimage('m', 'm4')"><IMG NAME="button4" SRC="m4-0.gif" width="254" height="60" border=0></A><br clear=all>
+<A HREF="fourdcubed/index.html" target="_self" onmouseout="SetIt(0); setimage('m', 'm0')" onmouseover="SetIt(5); setimage('m', 'm5')"><IMG NAME="button5" SRC="m5-0.gif" width="254" height="70" border=0></A><br clear=all>
+</td><td width=1 bgcolor="#292929"></td><td width=* align=right valign=bottom><img height=40 src="images/titlebar01-a.gif" border=0 alt=""><img height=40 src="images/titlebar01-b.gif" border=0 alt="" name="m" id="m"><p>&nbsp;<p><img src="images/menu_me_1.gif" border=0 alt=""><img src="images/menu_me_2.gif" border=0 alt=""><br><img src="images/menu_me_3.gif" border=0 alt=""><img src="images/menu_me_4.gif" border=0 alt=""><img src="images/menu_me_5.gif" border=0 alt=""></td></tr></table></td><td><img src="images/menu008.gif" width=32 height=350></td></tr>
+<tr><td><img src="images/menu009.gif" width=23 height=6></td><td><img src="images/menu010.gif" width=546 height=6></td><td><img src="images/menu011.gif" width=32 height=6></td></tr>
+</table><br>
+<pre>"...give what you can, take what you need..."</pre>
+<p>
+<table width=599 cols=3 cellpadding=0 cellspacing=0 border=0>
+<tr><td colspan=2 height=1 bgcolor="#C0C0C0"></td><td></td></tr>
+<tr><td width=299 align=left valign=top>
+<font color="#FFFFFF" face="Arial Black">Real Name:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">tim st.clair</font><p>
+<font color="#FFFFFF" face="Arial Black">Nick:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">"frumbert" &nbsp; (it's a long story)</font><p>
+<font color="#FFFFFF" face="Arial Black">Occupation:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">computer technician</font><p>
+<font color="#FFFFFF" face="Arial Black">Age Group:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">18-24</font><p>
+<font color="#FFFFFF" face="Arial Black">Location:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">tamworth, australia</font><p>
+<font color="#FFFFFF" face="Arial Black">Email Address:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma"><a href="mailto:frumbert@hotmail.com">frumbert@hotmail.com</a></font><p>
+<font color="#FFFFFF" face="Arial Black">Favourite Colour:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">emerald green</font><p>
+<font color="#FFFFFF" face="Arial Black">Favourite Web Site:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma"><a href="http://www.theonion.com/">the onion</a></font><p>
+<font color="#FFFFFF" face="Arial Black">Favourite Celebrity:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma"><a href="http://www.milla.net/">milla jovovich</a></font><p>
+<font color="#FFFFFF" face="Arial Black">Grumble Most About:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">mobile phones</font><b>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma"><a href="http://www.mcdonagh.com.au/host/banner_manor.html">page banners</a></font><p>
+</td><td width=1 bgcolor="#C0C0C0"></td><td width=299 align=right valign=top>
+<font color="#FFFFFF" face="Arial Black">General Information:</font><br>
+&nbsp;&nbsp;&nbsp;<font color="#FFFFFF" size="2" face="Tahoma">
+i like to mess around with computers. they intrigue me. i have built two so far: one from the paper up, the other my current pc. i have many types, even ones dating back to before i was born. i still like to pull them out some days and crank up a game, or try to recreate cutting edge programs on them.<p>
+i also enjoy very much writing - i haven't had anything published yet, but that's not my intention for now. my stories tend to be science fiction and comedic fantasy. my poetry tends to be zen explorations and vaporous thoughts exposed.<a href="sub_locution.html"><img src="images/go.gif" border=0 alt=""></a><p>
+i have a love of electronic music - everything from brian eno at his best to the hardest speedcore to synthetic grooves; right along to extrordinary contempory artists such as bjork. i would like to be able to create music akin to what i hear, but this skill is not my strongest. i also enjoy the beastie boys, bach, and 'early' music, but not mozart.<a href="fourdcubed/index.html"><img src="images/go.gif" border=0 alt=""></a><p>
+i particularly like to play around with design. i cannot draw. indeed, i have difficulty pencilling my name. i enjoy watercolour painting, though i haven't done it for years.<a href="sub_oculator.html"><img src="images/go.gif" border=0 alt=""></a><p>
+my dream is to be able to interact with my computer without knowing it. i have been planning ways to realise this dream. for now, i am content with thinking about what is possible.</font><p>
+<tr><td></td><td colspan=2 height=1 bgcolor="#C0C0C0"></td></tr>
+</td></tr></table>
+<p>
+<font size=-2 color="#C0C0C0" face="verdana">estimated site hits:
+
+<br>
+
+</font>
+<!-- Start of TheCounter.com Code -->
+<SCRIPT><!-- 
+s="na";c="na";j="na";f=""+escape(document.referrer)
+//--></SCRIPT>
+<SCRIPT language="javascript1.2"><!--
+s=screen.width;v=navigator.appName
+if (v != "Netscape") {c=screen.colorDepth}
+else {c=screen.pixelDepth}
+j=navigator.javaEnabled()
+//--></SCRIPT>
+<SCRIPT><!--
+function pr(n) {document.write(n,"\n");}
+NS2Ch=0
+if (navigator.appName == "Netscape" &&
+navigator.appVersion.charAt(0) == "2") {NS2Ch=1}
+if (NS2Ch == 0) {
+r="&size="+s+"&colors="+c+"&referer="+f+"&java="+j+""
+pr("<A HREF=\"http://www.TheCounter.com\" TARGET=\"_top\"><IMG")
+pr("BORDER=0 SRC=\"http://c1.thecounter.com/id=303090"+r+"\"></A>")}
+//--></SCRIPT>
+<NOSCRIPT><A HREF="http://www.TheCounter.com" TARGET="_top"><IMG
+SRC="http://c1.thecounter.com/id=303090" BORDER=0></A>
+</NOSCRIPT>
+<!-- End of TheCounter.com Code -->
+
+<br>
+
+<font size=-2 color="#000000" face="verdana">- frumbert's follies -</font>
+</center>
+</body></html>

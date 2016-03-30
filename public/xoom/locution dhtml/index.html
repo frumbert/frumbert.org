@@ -1,0 +1,338 @@
+<html>
+<head>
+<title>Locution - the Art of Expression</title>
+
+<SCRIPT language="Javascript1.2" src="browsercheck.js"></script>
+<SCRIPT language="Javascript1.2" src="dynlayer.js"></script>
+<SCRIPT language="Javascript1.2" src="css.js"></script>
+
+<SCRIPT language="Javascript1.2" src="ttoolbar.js"></script>
+<SCRIPT language="Javascript1.2" src="tpageload.js"></script>
+<SCRIPT language="Javascript" src="mmimage.js"></script>
+
+<SCRIPT LANGUAGE="Javascript">
+<!--
+
+	var SldSpeed = "15";
+	var SldWidth = "470";
+
+	var NewNewsFile = '';
+	var QT = "'";
+
+	var tbrStartMessage = new tToolbar();
+	tbrStartMessage.Left=0;
+	tbrStartMessage.Top=0;
+	tbrStartMessage.Width=0;
+	tbrStartMessage.Height=0;
+	tbrStartMessage.HTML='';
+
+	var tbrIconRead = new tToolbar();
+	tbrIconRead.Left=4;
+	tbrIconRead.Top=446;
+	tbrIconRead.Width=48;
+	tbrIconRead.Height=24;
+	tbrIconRead.HTML='<a href="javascript:sys_PopArchive();" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('+QT+'document.read'+QT+','+QT+'document.read'+QT+','+QT+'console/icon_read_ontop.gif'+QT+')"><img name="read" src="console/icon_read.gif" border=0></a>';
+
+	var tbrIconRespond = new tToolbar();
+	tbrIconRespond.Left=54;
+	tbrIconRespond.Top=446;
+	tbrIconRespond.Width=48;
+	tbrIconRespond.Height=24;
+	tbrIconRespond.HTML='<a href=javascript:sys_SpawnNews("respond.html"); onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('+QT+'document.respond'+QT+','+QT+'document.respond'+QT+','+QT+'console/icon_respond_ontop.gif'+QT+')"><img name="respond" src="console/icon_respond.gif" border=0></a>';
+
+	var tbrIconHelp = new tToolbar();
+	tbrIconHelp.Left=104;
+	tbrIconHelp.Top=446;
+	tbrIconHelp.Width=48;
+	tbrIconHelp.Height=24;
+	tbrIconHelp.HTML='<a href="javascript:sys_Help();" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('+QT+'document.help'+QT+','+QT+'document.help'+QT+','+QT+'console/icon_help_ontop.gif'+QT+')"><img name="help" src="console/icon_help.gif" border=0></a>';
+
+	var tbrIconQuit = new tToolbar();
+	tbrIconQuit.Left=154;
+	tbrIconQuit.Top=446;
+	tbrIconQuit.Width=48;
+	tbrIconQuit.Height=24;
+	tbrIconQuit.HTML='<a href="javascript:sys_Exit();" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('+QT+'document.quit'+QT+','+QT+'document.quit'+QT+','+QT+'console/icon_quit_ontop.gif'+QT+')"><img name="quit" src="console/icon_quit.gif" border=0></a>';
+
+	var tbrArchive = new tToolbar();
+	tbrArchive.Left=-470;
+	tbrArchive.Top=5;
+	tbrArchive.Width=470;
+	tbrArchive.Height=90;
+	tbrArchive.HTML ='<font face="arial" size=2><center>';
+	tbrArchive.HTML +='&nbsp;&nbsp;<a href=javascript:sys_SpawnNews("freeform.html");>freeform</a>'; 
+	tbrArchive.HTML +='&nbsp;&nbsp;<a href=javascript:sys_SpawnNews("narrative.html");>narrative</a>'; 
+	tbrArchive.HTML +='&nbsp;&nbsp;<a href=javascript:sys_SpawnNews("conformal.html");>conformal</a>';
+	tbrArchive.HTML +='&nbsp;&nbsp;<a href=javascript:sys_SpawnNews("inveigle.html");>inveigle</a>';
+	tbrArchive.HTML +='&nbsp;&nbsp;<a href=javascript:sys_SpawnNews("system/sys_about.html");>menu</a>';
+	tbrArchive.HTML+='</center></font>';
+
+	var tbrNews = new tPageLoad();
+	tbrNews.Left=0;
+	tbrNews.Top=30;
+	tbrNews.Width=470;
+	tbrNews.Height=412;
+
+	var tbrPolyFilla = new tToolbar();
+	tbrPolyFilla.Left=640;
+	tbrPolyFilla.Top=0;
+	tbrPolyFilla.Width=35;
+	tbrPolyFilla.Height=480;
+	tbrPolyFilla.HTML='<img src="console/sidebar.gif" border=0>';
+
+	var tbrTitle = new tToolbar();
+	tbrTitle.Left=470;
+	tbrTitle.Top=3;
+	tbrTitle.Width=170;
+	tbrTitle.Height=32;
+	tbrTitle.HTML='<img src="images/locution_title.gif" border=0>';
+
+	var tbrFace = new tToolbar();
+	tbrFace.Left=470;
+	tbrFace.Top=36;
+	tbrFace.Width=168;
+	tbrFace.Height=395;
+	tbrFace.HTML='<img src="images/locution_face.gif" border=0>';
+
+	var tbrFooter = new tToolbar();
+	tbrFooter.Left=470;
+	tbrFooter.Top=427;
+	tbrFooter.Width=170;
+	tbrFooter.Height=32;
+	tbrFooter.HTML='<img src="images/locution_footer.gif" border=0>';
+
+	var tbrArrowUp = new tToolbar();
+	tbrArrowUp.Left=450;
+	tbrArrowUp.Top=370;
+	tbrArrowUp.Width=32;
+	tbrArrowUp.Height=15;
+	tbrArrowUp.HTML='<a href="javascript:sys_ScrollUp();"><img src="console/nav_arrow_up.gif" border=0></a>';
+
+	var tbrArrowDown = new tToolbar();
+	tbrArrowDown.Left=450;
+	tbrArrowDown.Top=390;
+	tbrArrowDown.Width=32;
+	tbrArrowDown.Height=15;
+	tbrArrowDown.HTML='<a href="javascript:sys_ScrollDown();"><img src="console/nav_arrow_down.gif" border=0></a>';
+
+	var tbrTopLine = new tToolbar();
+	tbrTopLine.Left=-5;
+	tbrTopLine.Top=21;
+	tbrTopLine.Width=480;
+	tbrTopLine.Height=10;
+	tbrTopLine.HTML='<font color="#ffffff"><hr width=470 size=1></font>';
+
+	var tbrBotLine = new tToolbar();
+	tbrBotLine.Left=-5;
+	tbrBotLine.Top=436
+	tbrBotLine.Width=480;
+	tbrBotLine.Height=10;
+	tbrBotLine.HTML='<font color="#ffffff"><hr width=470 size=1></font>';
+
+	var tbrStatus = new tToolbar();
+	tbrStatus.Left=320;
+	tbrStatus.Top=446;
+	tbrStatus.Width=470;
+	tbrStatus.Height=64;
+	tbrStatus.HTML='<font face="Arial" size="4"><b>streaming data...</b></font>';
+
+	tbrStatus.Build();
+	tbrNews.Build();
+	tbrTopLine.Build();
+	tbrBotLine.Build();
+	tbrArchive.Build();
+	tbrArrowDown.Build();
+	tbrArrowUp.Build();
+	tbrTitle.Build();
+     tbrFace.Build();
+	tbrFooter.Build();
+	tbrPolyFilla.Build();
+	tbrStartMessage.Build();
+	tbrIconRead.Build();
+	tbrIconRespond.Build();
+	tbrIconHelp.Build();
+	tbrIconQuit.Build();
+
+
+	writeCSS(tbrStatus.css);
+	writeCSS(tbrNews.css);
+	writeCSS(tbrTopLine.css);
+	writeCSS(tbrBotLine.css);
+	writeCSS(tbrArchive.css);
+	writeCSS(tbrArrowDown.css);
+	writeCSS(tbrArrowUp.css);
+	writeCSS(tbrTitle.css);
+	writeCSS(tbrFace.css);
+	writeCSS(tbrFooter.css);
+	writeCSS(tbrPolyFilla.css);
+	writeCSS(tbrStartMessage.css);
+	writeCSS(tbrIconRead.css);
+	writeCSS(tbrIconRespond.css);
+	writeCSS(tbrIconHelp.css);
+	writeCSS(tbrIconQuit.css);
+
+
+	//--------------------------------------
+	// Function    : Init()
+	// Description : Initialise layers
+	//--------------------------------------
+	function Init()
+	{
+		tbrNews.Activate();
+		tbrStatus.Activate();
+		tbrTopLine.Activate();
+		tbrBotLine.Activate();
+		tbrArchive.Activate();
+		tbrArrowDown.Activate();
+		tbrArrowUp.Activate();
+		tbrTitle.Activate();
+		tbrFace.Activate();
+		tbrFooter.Activate();
+		tbrPolyFilla.Activate();
+		tbrIconRead.Activate();
+		tbrIconRespond.Activate();
+		tbrIconHelp.Activate();
+		tbrIconQuit.Activate();
+		tbrStartMessage.Activate();
+		tbrStatus.Hide();
+		sys_SpawnNews('system/sys_about.html');
+	}
+	
+	//--------------------------------------
+	// Function    : PopUpIndex()
+	// Description : Show News index
+	//--------------------------------------
+	function sys_PopArchive()
+	{
+		tbrArchive.lyr.slideTo(0,5,SldSpeed);
+	}
+
+	//--------------------------------------
+	// Function    : DisconnectArchive()
+	// Description : Hide News Index
+	//--------------------------------------
+	function sys_DisconnectArchive()
+	{
+		tbrArchive.lyr.slideTo(-SldWidth,5,SldSpeed);
+	}
+
+	//--------------------------------------
+	// Function    : sys_SpawnNews(newsfile)
+	// Description : Open news archive
+	//--------------------------------------
+	function sys_SpawnNews(newsfile)
+	{
+	//	tbrStartMessage.Hide();
+		NewNewsFile=newsfile;
+		tbrNews.lyrDaText.slideTo(SldWidth,null,SldSpeed);
+		tbrStatus.Show();
+		sys_DisconnectArchive();	
+		sys_WaitForSlide();
+	}
+	function sys_WaitForSlide()
+	{
+		if (tbrNews.lyrDaText.x>=SldWidth)
+		{
+			sys_LoadNew();
+		} else {
+			setTimeout('sys_WaitForSlide()',20);
+		}
+	}
+	function sys_LoadNew()
+	{
+		tbrNews.textlyr.moveTo(null,0);
+		DoneLoading=false;
+		tbrNews.Load(NewNewsFile);
+		tbrNews.lyrDaText.slideTo(5,null,SldSpeed);
+		sys_WaitForEndSlide();
+	}
+	function sys_WaitForEndSlide()
+	{
+		if (tbrNews.lyrDaText.x<=5)
+		{
+			tbrStatus.Hide();
+		} else {
+			if (is.ie) tbrNews.BugItOut();
+			setTimeout('sys_WaitForEndSlide()',20);
+		}
+	}
+
+	//--------------------------------------
+	// Function    : sys_ScrollDown();
+	// Description : Scroll text down
+	//--------------------------------------
+	function sys_ScrollDown()
+	{
+		tbrNews.textlyr.slideBy(null,-128,SldSpeed);
+	}
+	
+	//--------------------------------------
+	// Function    : sys_ScrollUp();
+	// Description : Scroll text up
+	//--------------------------------------
+	function sys_ScrollUp()
+	{
+		//tbrNews.textlyr.moveBy(0,tbrNews.Height-32);
+		if (tbrNews.textlyr.y<0) tbrNews.textlyr.slideBy(null,128,SldSpeed);
+		//if (tbrNews.textlyr.y>0) tbrNews.textlyr.moveTo(null,0);
+	}
+	
+	
+
+	//--------------------------------------
+	// Function    : sys_Help()
+	// Description : Display system help file
+	//--------------------------------------
+	function sys_Help()
+	{
+		sys_SpawnNews('system/sys_help.html');
+	}
+
+	//--------------------------------------
+	// Function    : sys_Exit()
+	// Description : Exit system
+	//--------------------------------------
+	function sys_Exit()
+	{
+		if (confirm("Really Quit?"))
+		{
+			close();
+		}
+	}
+	
+	
+		
+	
+
+//-->
+</script>
+
+
+</head>
+
+<body bgcolor="#000000" text="#FFFFFF" link="#FFFFFF" vlink="#FFFFFF" alink="#FFFFFF" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" OnLoad="Init();">
+<SCRIPT LANGUAGE="Javascript">
+<!--
+	document.write('<img lowsrc="console/screen2.gif" src="console/screen1.jpg">');
+
+	document.write(tbrNews.div);
+	document.write(tbrStatus.div);
+	document.write(tbrTopLine.div);
+	document.write(tbrBotLine.div);
+	document.write(tbrIconRead.div);
+	document.write(tbrIconRespond.div);
+	document.write(tbrIconHelp.div);
+	document.write(tbrIconQuit.div);
+	document.write(tbrArchive.div);
+	document.write(tbrArrowDown.div);
+	document.write(tbrArrowUp.div);
+	document.write(tbrTitle.div);
+	document.write(tbrFace.div);
+	document.write(tbrFooter.div);
+	document.write(tbrPolyFilla.div);
+	document.write(tbrStartMessage.div);
+//-->
+</script>
+
+</body>
+</html>
